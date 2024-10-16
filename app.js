@@ -1,11 +1,19 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const tasks = require('./routes/tasks')
+const mongoose = require("mongoose");
+const tasks = require("./routes/tasks");
+require("dotenv").config();
+
 //middleware
 app.use(express.json());
 
-app.use('/api/v1/tasks',tasks);
+app.use("/api/v1/tasks", tasks);
 
-app.listen(5000,()=>{
-    console.log("Listening to port 5000")
-})
+mongoose
+  .connect(process.env.DB_URI)
+  .then(() => console.log("Connected to DB successfully"))
+  .catch((err) => console.log(err));
+
+app.listen(process.env.Port, () => {
+  console.log("Server Running...");
+});
