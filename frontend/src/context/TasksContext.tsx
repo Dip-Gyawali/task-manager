@@ -1,5 +1,6 @@
 import { createContext, useReducer } from "react"
 type TaskData = {
+    _id:string;
     name: string,
     completed: boolean
   }
@@ -16,6 +17,12 @@ const reducer = (state,action)=>{
         return{
             tasks: [action.payload,...state.tasks]
         }
+
+    case 'EDIT_DATA':
+      return{
+         tasks:
+      }
+
     case 'DELETE_TASKS':
         return{
             tasks: state.tasks.filter((element)=> element._id!== action.payload._id)
