@@ -4,12 +4,17 @@ const mongoose = require("mongoose");
 const tasks = require("./routes/tasks");
 const cors = require("cors")
 require("dotenv").config();
+const notFound = require('./middleware/notFound');
+const handleError = require('./middleware/error-handler');
 
 //middleware
 app.use(express.json());
 app.use(cors());
 
 app.use("/api/v1/tasks", tasks);
+app.use(notFound);
+//to handle error inside async await
+app.use(handleError);
 
 mongoose
   .connect(process.env.DB_URI)

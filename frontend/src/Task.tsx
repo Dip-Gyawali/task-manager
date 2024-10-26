@@ -26,6 +26,9 @@ export default function Task() {
   }
 
   const AddData = async ()=>{
+    if(newTask === ''){
+      return;
+    }
     try{
      const addData = await axios.post('http://localhost:5000/api/v1/tasks', {
        name: newTask,
@@ -46,7 +49,7 @@ export default function Task() {
   return (
     <>
       <div className="h-[100vh] w-[100vw] flex flex-col items-center mt-36 ">
-        <form className="p-5 border-2 border-black rounded-md">
+        <form className="p-5 border-2 border-black rounded-md" onSubmit={AddData}>
           <div className="flex items-center flex-col gap-2">
             <h1 className="font-bold text-xl">Tasks</h1>
             <input

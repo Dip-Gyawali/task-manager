@@ -20,7 +20,7 @@ const reducer = (state,action)=>{
 
     case 'EDIT_DATA':
       return{
-         tasks:
+         tasks: [...state.tasks,action.payload]
       }
 
     case 'DELETE_TASKS':
